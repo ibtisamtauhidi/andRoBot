@@ -1,0 +1,35 @@
+application: planetaryexplorers
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+- url: /favicon\.ico
+  static_files: favicon.ico
+  upload: favicon\.ico
+
+- url: /lib
+  static_dir: lib
+
+- url: /sensorPostTest
+  static_files: sensorPOST.htm
+  mime_type: text/html
+  upload: sensorPOST\.htm
+
+- url: /imagePostTest
+  static_files: imagePOST.htm
+  mime_type: text/html
+  upload: imagePOST\.htm
+
+- url: /
+  static_files: missionControl.htm
+  mime_type: text/html
+  upload: missionControl\.htm
+
+- url: .*
+  script: main.app
+
+libraries:
+- name: webapp2
+  version: "2.5.1"

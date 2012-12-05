@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="app_name">ArduinoSim</string>
+    <string name="hello_world">Scorpius Arduino Simulator</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">ScorpiusArduinoSim</string>
+    <string name="sf">Sonar Fornt</string>
+    <string name="sl">Sonar Left</string>
+    <string name="sr">Sonar Right</string>
+    <string name="ir">IR Down</string>
+</resources>
