@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Scorpius Rover Project</title>
+		<script src="./lib/jquery.js" type="text/javascript"></script> 
+		
+		<style>
+			*,html,body {
+				margin: 0px;
+				padding: 0px;
+				overflow: hidden;
+				background: #fffee6;
+			}
+			#frame,#links {
+				text-align: center;
+				margin: 20px;
+			}
+			#links {
+				font-size: 15px;
+				font-family: Verdana;
+			}
+			#frame {
+				margin-top: 50px;
+				margin-bottom: 50px;
+			}
+			a {
+				padding: 5px;
+				margin: 10px;
+				border-radius: 5px;
+				text-decoration: none;
+				color: #3d2d2d;
+			}
+			a:hover {
+				color: #8383d5;
+			}
+			#intro, #admin {
+				font-family: Verdana;
+				font-size: 12px;
+				text-align: justify;
+				margin-left: 100px;
+				margin-right: 100px;
+			}
+		</style>
+		<script>
+
+		</script>
+	</head>
+	<body onLoad="start();">
+		<div id="frame">
+			<img src='./icons/logo.png' />
+		</div>
+		<div id='links'>
+			<a href='http://www.github.com/ibtisamtauhidi/scorpius'>Source Code</a> |
+			<a href='http://www.youtube.com/syedibtisam'>Videos</a> |
+			<a href='http://scorpius.wikinet.org'>Wiki</a>
+		</div>
+		<div id='intro'>Scorpius is a multi-featured rover. It combines the powers of the cloud, Android and Arduino to create a software-hardware system that attempts to address several current problems in robotics, including, among other things, line-following, obstacle-avoidance, voice control, voice synthesis, remote surveillance, motion & obstacle detection, face detection, remote live image streaming and remote photography in panorama & time-lapse mode. The rover, built upon a portable five-layered architecture, will use several mature and a few experimental algorithms in AI, Computer Vision, Robot Kinetics and Dynamics behind-the-scene to provide its prospective user in defense, entertainment or industrial sector a positive user experience. A minimal amount of security is achieved via. a handshake using MD5, SHA1 and AES. It even has a Twitter account for autonomous social networking.</div>
+		<div style='text-align: center; margin-top: 20px;' id='admin'>Admins click <a href='./admin'>here</a> to access control panel.</div>
+	</body>
+</html>

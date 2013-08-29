@@ -1,0 +1,150 @@
+*, html, body {
+	margin: 0px;
+	padding: 0px;
+	font-family: verdana;
+}
+body {
+	background: url(../lib/bg2.jpg);
+}
+::-webkit-scrollbar {
+	background: #FFF;
+	width: 8px;
+	height: 8px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.7);
+    border-radius: 0px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+}
+.public_button {
+	float: left;
+	height: 80px;
+	width: 80px;
+	border-radius: 80px;
+	border: 1px #000 solid;
+	margin-top: 30px;
+	margin-right: 10px;
+}
+.public_button:hover {
+	cursor: pointer;
+}
+#github {
+	background: blue;
+	background-image: url('../icons/github.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	box-shadow: -2px 1px 5px #333;
+	transition: background 1s;
+	-moz-transition: background 1s; /* Firefox 4 */
+	-webkit-transition: background 1s; /* Safari and Chrome */
+	-o-transition: background 1s; /* Opera */
+}
+#github:hover {
+	background: #657;
+	background-image: url('../icons/github.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	box-shadow: -2px 1px 5px #333;
+}
+#youtube {
+	background: red;
+	background-image: url('../icons/youtube.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	box-shadow: -2px 0px 5px #333;
+	transition: background 1s;
+	-moz-transition: background 1s; /* Firefox 4 */
+	-webkit-transition: background 1s; /* Safari and Chrome */
+	-o-transition: background 1s; /* Opera */
+}
+#youtube:hover {
+	background: #119;
+	background-image: url('../icons/youtube.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	box-shadow: -2px 0px 5px #333;
+}
+#mediawiki {
+	background: green;
+	background-image: url('../icons/mediawiki.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	box-shadow: -1px -2px 5px #333;
+	transition: background 1s;
+	-moz-transition: background 1s; /* Firefox 4 */
+	-webkit-transition: background 1s; /* Safari and Chrome */
+	-o-transition: background 1s; /* Opera */
+}
+#mediawiki:hover {
+	background: #228;
+	background-image: url('../icons/mediawiki.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	box-shadow: -1px -2px 5px #333;
+}
+#twitter {
+	background: #786;
+	background-image: url('../icons/twitter.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	box-shadow: 2px -2px 5px #333;
+	transition: background 1s;
+	-moz-transition: background 1s; /* Firefox 4 */
+	-webkit-transition: background 1s; /* Safari and Chrome */
+	-o-transition: background 1s; /* Opera */
+}
+#twitter:hover {
+	background: #765;
+	background-image: url('../icons/twitter.png');
+	background-repeat: no-repeat;
+	background-position: center center;
+	box-shadow: 2px -2px 5px #333;
+}
+.creditImg {
+	height: 40px;
+	margin-right: 10px;
+	transition: height 1s;
+	-moz-transition: height 1s; /* Firefox 4 */
+	-webkit-transition: height 1s; /* Safari and Chrome */
+	-o-transition: height 1s; /* Opera */
+}
+.creditImg:hover {
+	height: 50px;
+	cursor: pointer;
+}
+.creditImgBox {
+	float: left;
+	height: 70px;
+	width: 70px;
+	margin-top: 30px;
+	text-align: center;
+}
+.widgetSmall {
+	float: left;
+	height: 70px;
+	width: 150px;
+	margin-right: 10px;
+	background: rgba(255,255,255,0.3);
+	transition: background 1s;
+	-moz-transition: background 1s; /* Firefox 4 */
+	-webkit-transition: background 1s; /* Safari and Chrome */
+	-o-transition: background 1s; /* Opera */
+}
+.widgetSmall:hover {
+	background: rgba(0,0,0,0.2);
+	cursor: pointer;
+}
+.widget_box {
+	background: rgba(255,255,255,0.3);
+	transition: background 1s;
+	-moz-transition: background 1s; /* Firefox 4 */
+	-webkit-transition: background 1s; /* Safari and Chrome */
+	-o-transition: background 1s; /* Opera */
+}
+.widget_box:hover {
+	background: rgba(0,0,0,0.2);
+	cursor: pointer;
+}

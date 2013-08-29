@@ -1,0 +1,127 @@
+<html>
+<head>
+<script src="../lib/jquery.js" type="text/javascript"></script> 
+<script src="../lib/pixastic.custom.js" type="text/javascript"></script>
+<script src="../lib/imageUpdate.js" type="text/javascript"></script>
+<script>
+function start() {
+	var ctx=document.getElementById("camViewCamera").getContext("2d");
+	image = new Image();
+	image.onload = function() {
+		ctx.drawImage(image,0,0,384,288); 
+		updateCamera();
+	}
+	image.src='../img/img.jpg';
+}
+</script>
+<style>
+body {
+	background: #FFF;
+	text-align: center;
+	font-family: Verdana;
+}
+.imgProcessingLabel {
+	float: left;
+	padding: 1%;
+}
+.imgProcessingcheckbox {
+	float: right;
+	padding: 1%;
+}
+.imgProcessingBox {
+	clear: both;
+	text-align: center;
+}
+#camViewImage {
+	float: left;
+	width: 41%;
+	margin: 2%;
+	padding: 2%;
+}
+#camViewImageProcessing {
+	float: right;
+	width: 41%;
+	margin: 2%;
+	padding: 2%
+}
+</style>
+</head>
+<body onLoad="start();">
+<div id='camView'>
+	<div id='camViewImage'>
+		<canvas id='camViewCamera' width="384px" height="288px"></canvas>
+	</div>
+	<div id='camViewImageProcessing'>
+		<div style='margin-bottom: 12px;'><strong>Image Processing Toolbox</strong></div>
+		<div id='pixMain'>
+			<form name='imgProcessing'>
+				<div class='imgProcessingBox'>
+					<div class='imgProcessingLabel'>
+						<label for='imgProcessingRed'>RED SHIFT</label>
+					</div>
+					<div class='imgProcessingcheckbox'>
+						<input type='checkbox' name='imgProcessingRed' id='imgProcessingRed'/>
+					</div>
+				</div>
+				<div class='imgProcessingBox'>
+					<div class='imgProcessingLabel'>
+						<label for='imgProcessingGreen'>GREEN SHIFT</label>
+					</div>
+					<div class='imgProcessingcheckbox'>
+						<input type='checkbox' name='imgProcessingGreen' id='imgProcessingGreen'/>
+					</div>
+				</div>
+				<div class='imgProcessingBox'>
+					<div class='imgProcessingLabel'>
+						<label for='imgProcessingBlue'>BLUE SHIFT</label>
+					</div>
+					<div class='imgProcessingcheckbox'>
+						<input type='checkbox' name='imgProcessingBlue' id='imgProcessingBlue'/>
+					</div>
+				</div>
+				<div class='imgProcessingBox'>
+					<div class='imgProcessingLabel'>
+						<label for='imgProcessingNegative'>NEGATIVE</label>
+					</div>
+					<div class='imgProcessingcheckbox'>
+						<input type='checkbox' name='imgProcessingNegative' id='imgProcessingNegative'/>
+					</div>
+				</div>
+				<div class='imgProcessingBox'>
+					<div class='imgProcessingLabel'>
+						<label for='imgProcessingGray'>GRAY SCALE</label>
+					</div>
+					<div class='imgProcessingcheckbox'>
+						<input type='checkbox' name='imgProcessingGray' id='imgProcessingGray'/>
+					</div>
+				</div>
+				<div class='imgProcessingBox'>
+					<div class='imgProcessingLabel'>
+						<label for='imgProcessingNoise'>ADD NOISE</label>
+					</div>
+					<div class='imgProcessingcheckbox'>
+						<input type='checkbox' name='imgProcessingNoise' id='imgProcessingNoise'/>
+					</div>
+				</div>
+				<div class='imgProcessingBox'>
+					<div class='imgProcessingLabel'>
+						<label for='imgProcessingEdge'>EDGE DETECT</label>
+					</div>
+					<div class='imgProcessingcheckbox'>
+						<input type='checkbox' name='imgProcessingEdge' id='imgProcessingEdge'/>
+					</div>
+				</div>
+				<div class='imgProcessingBox'>
+					<div class='imgProcessingLabel'>
+						<label for='imgProcessingCon'>ADD CONTRAST</label>
+					</div>
+					<div class='imgProcessingcheckbox'>
+						<input type='checkbox' name='imgProcessingCon' id='imgProcessingCon'/>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <PreferenceCategory
+            android:title="@string/dialog_based_preferences">
+
+        <CheckBoxPreference 
+            android:key="httpd_pref"
+            android:title="@string/title_httpd"
+            android:summary="@string/summ_httpd"
+            android:defaultValue="true"
+            />        
+        
+        <EditTextPreference
+                android:key="edittext_pass"
+                android:dependency="httpd_pref"
+                android:title="@string/title_edittext_preference_pass"
+                android:summary="@string/summary_edittext_preference_pass"
+                android:dialogTitle="@string/dialog_title_edittext_preference_pass"
+                android:defaultValue="password" />
+        
+        <EditTextPreference
+                android:key="edittext_port"
+                android:dependency="httpd_pref"
+                android:title="@string/title_edittext_preference_port"
+                android:summary="@string/summary_edittext_preference_port"
+                android:dialogTitle="@string/dialog_title_edittext_preference_port" 
+                android:defaultValue="8080" />
+        
+        <CheckBoxPreference 
+            android:key="stream_pref"
+            android:dependency="httpd_pref"
+            android:title="@string/title_stream"
+            android:summary="@string/summ_stream"
+            android:defaultValue="false"
+            />        
+    </PreferenceCategory>
+    <PreferenceCategory
+            android:title="@string/additional_comm_preferences">
+
+        <CheckBoxPreference 
+            android:key="sms_pref"
+            android:title="@string/title_sms"
+            android:summary="@string/summ_sms"
+            android:defaultValue="false"
+            />
+        <CheckBoxPreference 
+            android:key="twitter_pref"
+            android:title="@string/title_twitter"
+            android:summary="@string/summ_twitter"
+            android:defaultValue="false"
+            />
+        
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+            android:title="@string/launch_preferences">
+        <PreferenceScreen
+                android:title="@string/title_intent_preference"
+                android:summary="@string/summary_intent_preference">
+            <intent android:action="android.intent.action.VIEW"
+                    android:data="http://scorpius.wikinet.org/" />
+        </PreferenceScreen>
+    </PreferenceCategory>
+</PreferenceScreen>

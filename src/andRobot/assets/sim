@@ -1,0 +1,281 @@
+<html>
+<head>
+<script src="../lib/jquery.js" type="text/javascript"></script> 
+<script>
+function updateSensor() {
+	sensorUpdate();
+}
+function sensorUpdate() {
+	var request = null;
+	if (window.XMLHttpRequest) {
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	if (request) {
+		request.open("GET", '../status');
+		request.onreadystatechange = function() {
+			if (request.readyState == 4) {
+				json = request.responseText;
+				sensorPrint(json);
+			}
+		}
+		request.send(null);
+	} 
+	else {
+		alert("Sorry, you must update your browser before seeing Ajax in action.");
+	}
+}
+function sensorPrint(jsonStr) {
+	if(jsonStr!="") {
+		var json = eval ("(" + jsonStr + ")");
+		$("#mode").html(json.MODE);
+		$("#horizontal").html(json.HORIZONTAL);
+		$("#vertical").html(json.VERTICAL);
+		$("#time").html(json.TDIFF);		
+		simulate(json.MODE,json.HORIZONTAL,json.VERTICAL,json.TDIFF);
+	}
+	setTimeout(updateSensor,100);
+}
+function simulate(mode,hor,ver,tdiff) {
+	if(!((mode=="BLOB")||(mode=="AGV"))) {
+		stop();
+		return;
+	}
+	if(parseInt(tdiff)>1000) {
+		stop();
+		return;
+	}
+	if(mode=="AGV") setMotorDrives(hor,ver);
+	else if(mode=="BLOB") setMotorDrives(hor,0.5);
+}
+function setMotorGraph(hor,ver) {
+	var h = (hor+1)*200;
+	var v = 400-((ver+1)*200);
+	var ctx=document.getElementById("mycanvas").getContext("2d");
+	ctx.clearRect(0,0,400,400);
+	ctx.beginPath();
+	ctx.arc(h, v, 20, 0, Math.PI * 2, false);
+	ctx.closePath();
+	ctx.strokeStyle = "#555";
+	ctx.stroke();
+	ctx.beginPath();
+	ctx.moveTo(0, 200);
+	ctx.lineTo(400, 200);
+	ctx.strokeStyle = "#FFF";
+	ctx.stroke();
+	ctx.beginPath();
+	ctx.moveTo(200, 0);
+	ctx.lineTo(200, 400);
+	ctx.strokeStyle = "#FFF";
+	ctx.stroke();
+}
+function setMotorDrives(hor,ver) {
+	var dirA;
+	var dirB;
+	var breakA;
+	var breakB;
+	var speedA;
+	var speedB;
+	
+	
+	/*
+				  ^^
+				O----O
+				A    B
+	*/
+	
+	// Rotate
+	if(ver==2) {
+		 if(hor==0) stop();
+		 else if(hor > 0) {
+			dirA = "TRUE";
+			dirB = "FALSE";
+			breakA = "FALSE";
+			breakB = "FALSE";
+			speedA = 255*hor;
+			speedB = speedA;
+		 }
+		 else if(hor < 0) {
+			dirA = "FALSE";
+			dirB = "TRUE";
+			breakA = "FALSE";
+			breakB = "FALSE";
+			speedB = 255*(-1*hor);
+			speedA = speedB;
+		 }
+	}
+	else if(ver > 0) {
+		if(hor == 0) {
+			dirA = "TRUE";
+			dirB = "TRUE";
+			breakA = "FALSE";
+			breakB = "FALSE";
+			speedA = 255*ver;
+			speedB = 255*ver;
+		}
+		else if (hor > 0) {
+			dirA = "TRUE";
+			dirB = "TRUE";
+			breakA = "FALSE";
+			breakB = "FALSE";
+			speedA = 255*ver;
+			speedB = 255*ver*(1-hor);
+		}
+		else if(hor < 0) {
+			dirA = "TRUE";
+			dirB = "TRUE";
+			breakA = "FALSE";
+			breakB = "FALSE";
+			speedB = (255*ver);
+			speedA = ((255*ver)*(1-(-1*hor)));
+		 }
+	}
+	else if(ver < 0) {
+		if(hor == 0) {
+			dirA = "FALSE";
+			dirB = "FALSE";
+			breakA = "FALSE";
+			breakB = "FALSE";
+			speedA = 255*(-1*ver);
+			speedB = 255*(-1*ver);
+		}
+		else if (hor > 0) {
+			dirA = "FALSE";
+			dirB = "FALSE";
+			breakA = "FALSE";
+			breakB = "FALSE";
+			speedA = 255*(-1*ver);
+			speedB = 255*(-1*ver)*(1-hor);
+		}
+		else if(hor < 0) {
+			dirA = "FALSE";
+			dirB = "FALSE";
+			breakA = "FALSE";
+			breakB = "FALSE";
+			speedA = 255*(-1*ver);
+			speedB = 255*(-1*ver)*(1-(-1*hor));
+		 }
+	}
+	if(parseInt(speedA)==NaN) speedA = 0; else speedA = parseInt(speedA);
+	if(parseInt(speedB)==NaN) speedB = 0; else speedB = parseInt(speedB);
+	$("#dirA").html(dirA);
+	$("#dirB").html(dirB);
+	$("#speedA").html(speedA);
+	$("#speedB").html(speedB);
+	$("#breakA").html(breakA);
+	$("#breakB").html(breakB);
+	if(ver==2 )setMotorGraph(hor,0);
+	else setMotorGraph(hor,ver);
+}
+function stop() {
+	$("#dirA").html("TRUE");
+	$("#dirB").html("TRUE");
+	$("#speedA").html("0");
+	$("#speedB").html("0");
+	$("#breakA").html("TRUE");
+	$("#breakB").html("TRUE");
+	setMotorGraph(0,0);
+}
+</script>
+<style>
+body {
+	background: #FFF;
+}
+#mcanvas {
+	float: left;
+}
+#statusTable {
+	float: right;
+}
+.statusKey {
+	padding: 5px;
+	float: left;
+}
+.statusValue {
+	padding: 5px;
+	float: right;
+}
+.motorBox, .statusFrame {
+ clear: both;
+ width: 390px;
+}
+.motorBoxLeft, .statusKey {
+	float: left;
+	width: 150px;
+	padding: 10px;
+}
+.motorBoxRight, .statusValue {
+	float: right;
+	width: 150px;
+	padding: 10px;
+}
+#statusTable, #motorLeft, #motorRight {
+	border: 1px solid #000;
+}
+</style>
+</head>
+<body onLoad="updateSensor();">
+	<div id='mcanvas'>
+		<canvas id='mycanvas' height='400px' width='400px' style="background: #000;">No Canvas</canvas>
+	</div>
+	<div id='statusTable'>
+		<div class='statusFrame'>
+			<div class='statusKey'>MODE</div>
+			<div class='statusValue' id='mode'>-</div>
+		</div>
+		<div class='statusFrame'>
+			<div class='statusKey'>HORIZONTAL</div>
+			<div class='statusValue' id='horizontal'>-</div>
+		</div>
+		<div class='statusFrame'>
+			<div class='statusKey'>VERTICAL</div>
+			<div class='statusValue' id='vertical'>-</div>
+		</div>
+		<div class='statusFrame'>
+			<div class='statusKey'>TIME</div>
+			<div class='statusValue' id='time'>-</div>
+		</div>
+	</div>
+	<div id='motor' style='clear: both; padding-top: 20px;'>
+		<div id='motorLeft' style="float: left;">
+				<div style="text-align: center; border-bottom: 1px dashed #000;">MOTOR LEFT</div>
+				<div class='motorBox'>
+					<div class='motorBoxLeft'>DIRECTION</div>
+					<div class='motorBoxRight' id="dirA">-</div>
+				</div>
+				<div class='motorBox'>
+					<div class='motorBoxLeft'>SPEED (PMW)</div>
+					<div class='motorBoxRight' id="speedA">-</div>
+				</div>
+				<div class='motorBox'>
+					<div class='motorBoxLeft'>BRAKE</div>
+					<div class='motorBoxRight' id="breakA">-</div>
+				</div>
+				<div class='motorBox'>
+					<div class='motorBoxLeft'>CURRENT SENSING</div>
+					<div class='motorBoxRight'>-</div>
+				</div>
+		</div>
+		<div id='motorLeft' style="float: right;">
+				<div style="text-align: center; border-bottom: 1px dashed #000;">MOTOR RIGHT</div>
+				<div class='motorBox'>
+					<div class='motorBoxLeft'>DIRECTION</div>
+					<div class='motorBoxRight' id="dirB">-</div>
+				</div>
+				<div class='motorBox'>
+					<div class='motorBoxLeft'>SPEED (PMW)</div>
+					<div class='motorBoxRight' id="speedB">-</div>
+				</div>
+				<div class='motorBox'>
+					<div class='motorBoxLeft'>BRAKE</div>
+					<div class='motorBoxRight' id="breakB">-</div>
+				</div>
+				<div class='motorBox'>
+					<div class='motorBoxLeft'>CURRENT SENSING</div>
+					<div class='motorBoxRight'>-</div>
+				</div>
+		</div>
+	</div>
+</body>
+</html>

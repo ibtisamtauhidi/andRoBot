@@ -1,0 +1,81 @@
+<html>
+<head>
+<script src="../lib/jquery.js" type="text/javascript"></script> 
+<style>
+body {
+	background: #FFF;
+	text-align: center;
+	font-family: Verdana;
+	font-size: 12px;
+}
+p {
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid #000;
+}
+p:first-child {
+	margin: 5px;
+	padding: 5px;
+	border: 1px solid #000;
+	background: #555;	
+}
+</style>
+<script>
+function say() {
+	var mtext = $('#voiceIP').val();
+	if(!mtext) return;
+	$.get(
+		'../voice/say',	
+		{'text': mtext },	
+		function(data) { 
+			$('#voiceIP').val("");
+		}
+	);
+}
+function hear() {
+	$.get(
+		'../voice/hearInit',	
+		{},	
+		function(data) { 
+			if(data=="OK") listen();
+			else $('body').html("Oops...!!! Error initializing voice synthesis...");
+		}
+	);
+}
+function listen() {
+	$('body').html("<div style='text-align: center;'><img src='../img/load.gif'></div><div style='text-align: center; padding-top: 20px;'>WAITING</div>");
+	listenloop();
+}
+function listenloop() {
+	$.get(
+		'../voice/hearStat',	
+		{},	
+		function(data) { 
+			if(data=="waiting") {
+				setTimeout(listenloop,1000);
+			} else {
+				$('body').html(data+"<div><button id=\"voiceButton\" style=\"width: 300px; padding: 10px;\" onClick='reload();'>BACK</button></div>");
+			}
+		}
+	);
+}
+function reload() {
+	location.reload();
+}
+</script>
+</head>
+<body>
+<div>
+<div><input type='text' id='voiceIP' style="width: 300px; padding: 10px;" autofocus x-webkit-speech /></div>
+<div><button id="voiceButton" style="width: 300px; padding: 10px;" onClick='say();'>Say</button></div>
+<div><button id="voiceButton" style="width: 300px; padding: 10px;" onClick='hear();'>Hear</button></div>
+</div>
+<script type="text/javascript">
+$("#voiceIP").keyup(function(event) {
+	if(event.keyCode == 13){
+		$("#voiceButton").click();
+	}
+});
+</script>
+</body>
+</html>

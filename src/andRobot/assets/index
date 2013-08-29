@@ -1,0 +1,15 @@
+<html>
+<head>
+<title>Scorpius : Rover Control Centre</title>
+<link rel="stylesheet" type="text/css" href="./lib/style.css"> 
+<script src="./lib/jquery.js" type="text/javascript"></script> 
+<script src="./lib/script.js" type="text/javascript"></script>
+<script src="./lib/md5.js" type="text/javascript"></script>
+<script src="./lib/sha1.js" type="text/javascript"></script>
+<script src="./lib/aes.js" type="text/javascript"></script>
+<script type="text/javascript">
+</script>
+</head>
+<body onLoad="jsInit();" onunload="alert('The onunload event was triggered');">
+</body>
+</html>

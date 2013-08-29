@@ -1,0 +1,117 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="www.snx.sunnyhttp"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="10" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+	<uses-permission android:name="android.permission.SEND_SMS" />
+	
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <service android:name=".sensorUpdaterService" >
+        </service>
+        <service android:name=".httpServerService" >
+        </service>
+        <service android:name=".smsServerService" >
+        </service>
+
+        <receiver android:name=".SmsReceiver" android:exported="true" >
+              <intent-filter android:priority="1000">
+                    <action android:name="android.provider.Telephony.SMS_RECEIVED" /> 
+              </intent-filter>
+        </receiver>
+        
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main"
+            android:screenOrientation="landscape" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".RemoteSurveillanceActivity"
+            android:label="@string/title_activity_remote_surveillance"
+            android:screenOrientation="landscape" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="www.snx.sunnyhttp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".OpenCVActivity"
+            android:label="@string/title_activity_open_cv"
+            android:screenOrientation="landscape" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="www.snx.sunnyhttp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".VoiceRecognitionActivity"
+            android:label="@string/title_activity_voice_recognition"
+            android:screenOrientation="landscape" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="www.snx.sunnyhttp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".GyroRemote"
+            android:label="@string/title_activity_gyro_remote"
+            android:screenOrientation="landscape" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="www.snx.sunnyhttp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".PhotograpyActivity"
+            android:label="@string/title_activity_photograpy" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="www.snx.sunnyhttp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".MyPreferenceActivity"
+            android:label="@string/title_activity_my_preference" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="www.snx.sunnyhttp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ColorBlobDetectionActivity"
+            android:label="@string/title_activity_my_preference" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="www.snx.sunnyhttp.MainActivity" />
+        </activity>
+       
+        <activity
+            android:name=".FaceDetectionActivity"
+            android:label="@string/title_activity_face_detection" >
+			<meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="www.snx.sunnyhttp.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CVListMain"
+            android:label="@string/title_activity_cvlist_main" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="www.snx.sunnyhttp.MainActivity" />
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,129 @@
+*, html, body {
+	margin: 0px;
+	padding: 0px;
+	font-family: verdana;
+}
+::-webkit-scrollbar {
+	background: #FFF;
+	width: 8px;
+	height: 8px;
+}
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.7);
+    border-radius: 0px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.9);
+}
+#header {
+	background: #111;
+	color: #DDD;
+	padding: 10px;
+	font-size: 20px;
+}
+#frame, #statistics, #footer {
+	clear: both;
+}
+#ctrlleft, #ctrlright, #camfeed, #devicefeed {
+	float: left;
+	width: 250px;
+	margin: 10px;
+}
+#camfeed {
+	margin-left: 0px;
+	margin-right: 0px;
+	border-right: 1px dashed #111;
+}
+#ctrlright,  #ctrlleft {
+	border-right: 1px dashed #111;
+	height: 320px;
+	margin-right: 0px;
+}
+#camfeed {
+	text-align: center;
+	width: 500px;
+}
+#camfeedimg {
+	width: 480px;
+	height: 320px;
+}
+#statistics {
+	margin: 10px;
+	padding-top: 10px;
+	border-top: 1px dashed #111;
+}
+#compassfeed, #accelerometer, #gpsfeed, #navigationfeed, #environmentfeed {
+	float: left;
+	margin-left: 40px;
+	margin-right: 40px;
+	margin-top: 15px;
+}
+.ctrlleftoptions {
+	color: #AA1111;
+	font-size: 14px;
+	float: left;
+}
+.ctrlleftoptions:hover {
+	color: #764;
+	cursor: pointer;
+}
+.devlabel {
+	color: #AA1111;
+	font-size: 14px;
+}
+.devstat {
+	color: #007700;
+	font-size: 14px;
+	margin-bottom: 10px;
+}
+#cmd {
+	width: 190px;
+	padding: 5px;
+	font-size: 14px;
+	color: #764;
+	float: left;
+}
+#cmdSend {
+	padding: 5px;
+	font-family: impact;
+	letter-spacing: 3px;
+}
+#cmdshell {
+	height: 260px;
+	color: #764;
+	font-size: 14px;	
+	overflow-y: auto;
+}
+#footer {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	font-size: 15px;
+	text-align: right;
+	padding: 10px;
+	background: #111;
+	color: #DDD;
+}
+#pixMain {
+	font-size: 12px;
+}
+.pixLabel {
+	width: 150px;
+	float: left;
+}
+.cmdUserString {
+	color: #117711;
+	padding: 5px;
+	text-align: justify;
+	padding-right: 10px;
+}
+.cmdResponseString {
+	color: #771111;
+	padding: 5px;
+	text-align: justify;
+	margin-right: 5px;
+	padding-bottom: 10px;
+	border-bottom: 1px dotted #111;
+}

@@ -1,0 +1,20 @@
+	<div id="public" class="frame">
+		<div style="width: 50%; float: right; boorder: thin #000 solid; padding-top: 25%;">
+			<div id="">
+				<input id="loginPassword" type="password" style="width: 350px; padding: 10px; font-size: 20px; border-radius: 7px;" placeholder="password" autofocus />
+			</div>
+			<div id="public_links">
+				<div class="public_button" id="github"></div>
+				<div class="public_button" id="youtube"></div>
+				<div class="public_button" id="mediawiki"></div>
+				<div class="public_button" id="twitter"></div>
+			</div>
+			<div id="credit" style="clear: both;">
+				<div class="creditImgBox"><img src='./icons/android.png' class='creditImg' alt='Android' /></div>
+				<div class="creditImgBox"><img src='./icons/arduino.png' class='creditImg' /></div>
+				<div class="creditImgBox"><img src='./icons/html5.png' class='creditImg' /></div>
+				<div class="creditImgBox"><img src='./icons/opencv.png' class='creditImg' /></div>
+				<div class="creditImgBox"><img src='./icons/jquery.png' class='creditImg' /></div>
+			</div>
+		</div>
+	</div>

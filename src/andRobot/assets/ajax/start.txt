@@ -1,0 +1,42 @@
+<div id="start" class="frame">
+	<div id="top_bar" style="padding: 20px;font-size: 25px; margin-bottom: 50px;">
+		<div id="logout" style="float: left" onClick="login();" class="logout">Logout</div>
+		<div id="logout" style="float: right">Help</div>
+	</div>
+	<div id="widgets" style="padding-left: 20px; padding-right: 20px; clear: both;">
+		<div id="widgets_left" style="float: left">
+			<div id="widget_left_top" style="width: 486px;">
+				<div class="widgetSmall" onClick=loadFeature('remote')>Remote Surveillance</div>
+				<div class="widgetSmall" onClick=loadFeature('face')>Face Detection</div>
+				<div class="widgetSmall" onClick=loadFeature('motion')>Motion Detection</div>
+			</div>
+			<div id="widget_left_center" style="width: 486px; clear: both; padding-top: 20px;">
+				<div style="width: 470px; height: 70px;" class="widget_box" onClick=loadFeature('voice')>Voice Notify</div>
+				<div style="width: 470px; height: 50px; margin-top: 10px;" class="widget_box" onClick=loadFeature('sensor')>Sensor Watch</div>
+			</div>
+			<div id="widget_left_bottom" style="width: 486px; clear: both; padding-top: 20px;">
+				<div style="width: 230px; height: 70px; float: left; margin-right: 10px;" class="widget_box" id='temp'>Temperature</div>
+				<div style="width: 230px; height: 70px; float: left;" class="widget_box" id='batt'>Battery</div>
+			</div>
+		</div>
+		<div id="widgets_right" style="float:left;">
+			<div id="widget_left_top">
+				<div style="width: 470px; height: 70px;" class="widget_box" onClick=loadFeature('line')>Line Follower</div>
+				<div style="width: 470px; height: 70px; margin-top: 20px;" class="widget_box" onClick=loadFeature('gyroremote')>TeleOp Vehicle</div>
+				<div style="width: 470px; height: 50px; margin-top: 10px;" class="widget_box" onClick=loadFeature('map')>Location</div>
+			</div>
+			<div id="widget_left_bottom" style="clear: both; padding-top: 20px;">
+				<div style="width: 230px; height: 70px; float: left; margin-right: 10px;" class="widget_box">Panorama</div>
+				<div style="width: 230px; height: 70px; float: left;" class="widget_box">Time-lapse</div>
+			</div>
+		</div>
+		<div id="widgets_system_button" style="float:left;">
+			<div id="widgets_system_settings" class="widget_box" style="width: 935px; padding: 10px; margin-top: 10px;" onClick=loadFeature('settings')>
+				Settings
+			</div>
+			<div id="widgets_system_simulator" class="widget_box" style="width: 935px; padding: 10px; margin-top: 10px;" onClick="openSim();">
+				Simulator
+			</div>
+		</div>
+	</div>
+</div>

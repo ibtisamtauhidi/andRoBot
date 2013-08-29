@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_restart"
+        android:title="@string/menu_restart"
+        android:orderInCategory="100"
+         />
+    <item android:id="@+id/menu_help"
+        android:title="@string/menu_help"
+        android:orderInCategory="100" />
+    <item android:id="@+id/menu_exit"
+        android:title="@string/menu_exit"
+        android:orderInCategory="100" />
+</menu>

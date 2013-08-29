@@ -1,0 +1,181 @@
+<html>
+<head>
+<script src="../lib/jquery.js" type="text/javascript"></script> 
+<script>
+function start() {
+	updateCamera();
+	updateSensor();
+}
+function updateCamera() {
+	imageUpdate();
+}
+function imageUpdate() {
+	var request = null;
+	if (window.XMLHttpRequest) {
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	if (request) {
+		request.open("GET", '../readImage');
+		request.onreadystatechange = function() {
+			if (request.readyState == 4) {
+				json = request.responseText;
+				camFeedUpdate(json);
+				setTimeout(updateCamera,200);			
+			}
+		}
+		request.send(null);
+	} 
+	else {
+		alert("Sorry, you must update your browser before seeing Ajax in action.");
+	}
+}
+function camFeedUpdate(img) {	
+	var ctx=document.getElementById("camViewCamera").getContext("2d");
+	image = new Image();
+	image.onload = function() {
+		ctx.drawImage(image,0,0,384,288); 
+	}
+	image.src=img;
+}
+function updateSensor() {
+	sensorUpdate();
+}
+function sensorUpdate() {
+	var request = null;
+	if (window.XMLHttpRequest) {
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	if (request) {
+		request.open("GET", '../readSensor');
+		request.onreadystatechange = function() {
+			if (request.readyState == 4) {
+				json = request.responseText;
+				sensorPrint(json);
+			}
+		}
+		request.send(null);
+	} 
+	else {
+		alert("Sorry, you must update your browser before seeing Ajax in action.");
+	}
+}
+function sensorPrint(jsonStr) {
+	if(jsonStr!="") {
+		var json = eval ("(" + jsonStr + ")");
+		com = json.COMPASS;
+		g_x = json.GYROX;
+		g_y = json.GYROY;
+		g_z = json.GYROZ;
+		prx = json.PROXIMITY;
+		if(isSet) {
+			if(((gyro_x - g_x)>0.2)||((gyro_y - g_y)>0.2)||((gyro_z - g_z)>0.2)||((gyro_x - g_x)<-0.2)||((gyro_y - g_y)<-0.2)||((gyro_z - g_z)<-0.2)) {
+				$("#gyro").html("<span style='color: red;'>:o</span>");
+				checkMusic();
+			}
+			if(((compass-com)>2)||((compass-com)<-2)) {
+				$("#magno").html("<span style='color: red;'>:o</span>");
+				checkMusic();
+			}
+			if(proximity != prx) {
+				$("#proxo").html("<span style='color: red;'>:o</span>");
+				checkMusic();
+			}
+			gyro_x = g_x;
+			gyro_y = g_y;
+			gyro_z = g_z;
+			compass = com;
+			proximity = prx;
+		} else {
+			gyro_x = g_x;
+			gyro_y = g_y;
+			gyro_z = g_z;
+			compass = com;
+			proximity = prx;
+			isSet = true;
+		}
+	}
+	setTimeout(updateSensor,100);
+}
+function reset(id) {
+	$("#"+id).html(":|");
+}
+var isSet = false;
+var gyro_x = 0;
+var gyro_y = 0;
+var gyro_z = 0;
+var compass = 0;
+var proximity = 0;
+</script>
+<style>
+body {
+	background: #FFF;
+	text-align: center;
+	font-family: Verdana;
+}
+.imgProcessingLabel {
+	float: left;
+	padding: 1%;
+}
+.imgProcessingcheckbox {
+	float: right;
+	padding: 1%;
+}
+.imgProcessingBox {
+	clear: both;
+	text-align: center;
+}
+#camViewImage {
+	float: left;
+	width: 41%;
+	margin: 2%;
+	padding: 2%;
+}
+#camViewImageProcessing {
+	float: right;
+	width: 41%;
+	margin: 2%;
+	padding: 2%
+}
+.motionDetectBox {
+	clear: both;
+}
+.motionDetectionKey {
+	padding: 5px;
+	float: left;
+}
+.motionDetectionValue {
+	padding: 5px;
+	float: right;
+}
+</style>
+</head>
+<body onLoad="start();">
+<div id='camView'>
+	<div id='camViewImage'>
+		<canvas id='camViewCamera' width="384px" height="288px"></canvas>
+	</div>
+	<div id='camViewImageProcessing'>
+		<div class='motionDetectBox'>
+			<div class='motionDetectionKey'>IMAGE</div>
+			<div class='motionDetectionValue'>:|</div>
+		</div>
+		<div class='motionDetectBox' onClick="reset('gyro')">
+			<div class='motionDetectionKey'>MOTION</div>
+			<div class='motionDetectionValue' id='gyro'>:|</div>
+		</div>
+		<div class='motionDetectBox' onClick="reset('magno')">
+			<div class='motionDetectionKey'>MAGNETIC</div>
+			<div class='motionDetectionValue' id='magno'>:|</div>
+		</div>
+		<div class='motionDetectBox' onClick="reset('proxo')">
+			<div class='motionDetectionKey'>PROXIMITY</div>
+			<div class='motionDetectionValue' id='proxo'>:|</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

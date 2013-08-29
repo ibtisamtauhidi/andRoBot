@@ -1,0 +1,58 @@
+<html>
+<head>
+<script src="../lib/jquery.js" type="text/javascript"></script> 
+<script src="../lib/pixastic.custom.js" type="text/javascript"></script>
+<script src="../lib/imageUpdate.js" type="text/javascript"></script>
+<script>
+function start() {
+	var ctx=document.getElementById("camViewCamera").getContext("2d");
+	image = new Image();
+	image.onload = function() {
+		ctx.drawImage(image,0,0,384,288); 
+		updateCamera();
+	}
+	image.src='../img/img.jpg';
+}
+</script>
+<style>
+body {
+	background: #FFF;
+	text-align: center;
+	font-family: Verdana;
+}
+.imgProcessingLabel {
+	float: left;
+	padding: 1%;
+}
+.imgProcessingcheckbox {
+	float: right;
+	padding: 1%;
+}
+.imgProcessingBox {
+	clear: both;
+	text-align: center;
+}
+#camViewImage {
+	float: left;
+	width: 41%;
+	margin: 2%;
+	padding: 2%;
+}
+#camViewImageProcessing {
+	float: right;
+	width: 41%;
+	margin: 2%;
+	padding: 2%
+}
+</style>
+</head>
+<body onLoad="start();">
+<div id='camView'>
+	<div id='camViewImage'>
+		<canvas id='camViewCamera' width="384px" height="288px"></canvas>
+	</div>
+	<div id='camViewImageProcessing'>
+	</div>
+</div>
+</body>
+</html>

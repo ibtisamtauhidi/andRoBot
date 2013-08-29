@@ -1,0 +1,86 @@
+<html>
+<head>
+<script src="../lib/jquery.js" type="text/javascript"></script> 
+<script>
+function updateSensor() {
+	sensorUpdate();
+}
+function sensorUpdate() {
+	var request = null;
+	if (window.XMLHttpRequest) {
+		request = new XMLHttpRequest();
+	} else if (window.ActiveXObject) {
+		request = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	if (request) {
+		request.open("GET", '../status');
+		request.onreadystatechange = function() {
+			if (request.readyState == 4) {
+				json = request.responseText;
+				sensorPrint(json);
+			}
+		}
+		request.send(null);
+	} 
+	else {
+		alert("Sorry, you must update your browser before seeing Ajax in action.");
+	}
+}
+
+function sensorPrint(jsonStr) {
+	if(jsonStr!="") {
+		var json = eval ("(" + jsonStr + ")");
+		$("#mode").html(json.MODE);
+		$("#horizontal").html(json.HORIZONTAL);
+		$("#vertical").html(json.VERTICAL);
+		$("#time").html(json.TDIFF);		
+	}
+	setTimeout(updateSensor,100);
+}
+
+</script>
+<style>
+#mcanvas {
+	float: left;
+}
+#statusTable {
+	float: right;
+}
+.statusKey {
+	padding: 5px;
+	float: left;
+}
+.statusValue {
+	padding: 5px;
+	float: right;
+}
+.statusFrame {
+	clear: both;
+}
+</style>
+
+</head>
+<body onLoad="updateSensor();">
+	<div id='mcanvas'>
+		<canvas id='mycanvas' height='240px' width='360px' style="background: #000;">No Canvas</canvas>
+	</div>
+	<div id='statusTable' style="width: 200px;">
+		<div class='statusFrame'>
+			<div class='statusKey'>MODE</div>
+			<div class='statusValue' id='mode'></div>
+		</div>
+		<div class='statusFrame'>
+			<div class='statusKey'>HORIZONTAL</div>
+			<div class='statusValue' id='horizontal'></div>
+		</div>
+		<div class='statusFrame'>
+			<div class='statusKey'>VERTICAL</div>
+			<div class='statusValue' id='vertical'></div>
+		</div>
+		<div class='statusFrame'>
+			<div class='statusKey'>TIME</div>
+			<div class='statusValue' id='time'></div>
+		</div>
+	</div>
+</body>
+</html>
